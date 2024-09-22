@@ -14,7 +14,7 @@ const button3 = document.querySelector("#button3");
 
 const text = document.querySelector("#text");
 const xpText = document.querySelector("#xpText");
-const healthTextxt = document.querySelector("#healthText");
+const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
@@ -96,6 +96,48 @@ const locations = [
             goTown
         ],
         text: "You are fighting a monster."
+    },
+    {
+        name: "kill monster",
+        "button text": [
+            "Go to town square",
+            "Go to town square",
+            "Go to town square"
+        ],
+        "button functions": [
+            goTown,
+            goTown,
+            goTown
+        ],
+        text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'
+    },
+    {
+        name: "lose",
+        "button text": [
+            "REPLAY?",
+            "REPLAY?",
+            "REPLAY?"
+        ],
+        "button functions": [
+            restart ,
+            restart ,
+            restart 
+        ],
+        text: "You die. &#x2620;"
+    },
+    {
+        name: "win",
+        "button text": [
+            "REPLAY?",
+            "REPLAY?",
+            "REPLAY?"
+        ],
+        "button functions": [
+            restart ,
+            restart ,
+            restart 
+        ],
+        text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;"
     }
 ];
 
@@ -122,6 +164,7 @@ button2.onclick = goCave;
 button3.onclick = fightDragon;
 
 function update(location){
+    monsterStats.style.display = "none";
     button1.innerText = location["button text"][0];
     button2.innerText = location["button text"][1];
     button3.innerText = location["button text"][2];
@@ -130,9 +173,8 @@ function update(location){
     button2.onclick = location["button functions"][1];
     button3.onclick = location["button functions"][2];
 
-    text.innerText = location.text;
+    text.innerHTML = location.text;
 }
-
 function goTown(){
     update(locations[0]);
 }
@@ -206,8 +248,43 @@ function attack(){
     text.innerText = "The "+monsters[fighting].name+" attacks."
     text.innerText += " You attack it with your " + weapons[currentWeaponIndex].name+".";
     health -= monsters[fighting].level;
-    monsterHealth -= weapons[currentWeaponIndex].power;
+    monsterHealth -= weapons[currentWeaponIndex].power + Math.floor(Math.random() * xp) + 1;
+    healthText.innerText = health;
+    monsterHealthText.innerText = monsterHealth;
+    if(health <=0){
+        lose();
+    } else if(monsterHealth <= 0){
+        if(fighting === 2){
+            winGame();
+        }else{
+            defeatMonster();
+        }
+    }
 }
 function dodge(){
-    
+    text.innerText = "You dodge the attack from the "+monsters[fighting].name+".";
+}
+function defeatMonster(){
+    gold +=Math.floor(monsters[fighting].level*6.7);
+    xp+=monsters[fighting].level;
+    goldText.innerText = gold;
+    xpText.innerText = xp;
+    update(locations[4]);
+}
+function lose(){
+    update(locations[5]);
+}
+function winGame(){
+    update(locations[6]);
+}
+function restart(){
+    xp = 0;
+    health= 100;
+    gold = 50;
+    currentWeaponIndex = 0;
+    inventory = ["stick"];
+    goldText.innerText = gold;
+    healthText.innerText = health;
+    xpText.innerText = xp;
+    goTown();
 }
