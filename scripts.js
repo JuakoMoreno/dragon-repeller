@@ -5,9 +5,10 @@ let gold = 50;
 
 let currentWeaponIndex = 0;
 let fighting;
+const missChance = .2;
 
 let monsterHealth;
-let inventory = ["stick"];
+let inventory = ["stick 🦯"];
 
 const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
@@ -291,7 +292,9 @@ function getMonsterAttackValue(level){
     return hit > 0 ? hit : 0;
 }
 function isMonsterHit(){
-    return Math.random() >.2 || health < 20;
+    //missChance => .2
+    //80% chance of hitting OR always hit if health below 20.
+    return Math.random() > missChance || health < 20;
 }
 function dodge(){
     text.innerText = "You dodge the attack from the "+monsters[fighting].name+".";
@@ -314,7 +317,7 @@ function restart(){
     health= 100;
     gold = 50;
     currentWeaponIndex = 0;
-    inventory = ["stick"];
+    inventory = ["stick 🦯"];
     goldText.innerText = gold;
     healthText.innerText = health;
     xpText.innerText = xp;
