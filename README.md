@@ -9,6 +9,6 @@ This project taught me the basics of HTML, CSS and JS to build an RPG game.
 - Add music to each location.
 - Add music to each monster fight.
 - Add flavor text.
-- Add icons.
+- ~Add icons.~
 - Add option to swap languages
 - Port to mobile.
