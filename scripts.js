@@ -24,19 +24,19 @@ const monsterHealthText = document.querySelector("#monsterHealth");
 
 const weapons = [
     {
-        name: "stick",
+        name: "stick 🦯",
         power: 5
     },
     {
-        name: "dagger",
+        name: "dagger 🔪",
         power: 30
     },
     {
-        name: "claw hammer",
+        name: "claw hammer 🔨",
         power: 50
     },
     {
-        name: "sword",
+        name: "sword 🗡️",
         power: 100
     }
 ];
@@ -45,9 +45,9 @@ const locations = [
     {
         name: "town square",
         "button text": [
-            "Go to store",
-            "Go to cave",
-            "Fight dragon"
+            "Go to store 🏬",
+            "Go to cave ⛰️",
+            "Fight dragon 🐉"
         ],
         "button functions": [
             goStore,
@@ -59,9 +59,9 @@ const locations = [
     {
         name: "store",
         "button text": [
-            "Buy 10 health (10 gold)",
-            "Buy weapon (30 gold)",
-            "Go to town square"
+            "Buy 10 health (10 gold) 💊",
+            "Buy weapon (30 gold) 🛡️",
+            "Go to town square 🏛️"
         ],
         "button functions": [
             buyHealth,
@@ -73,9 +73,9 @@ const locations = [
     {
         name: "cave",
         "button text": [
-            "Fight slime",
-            "Fight fanged beast",
-            "Go to town square"
+            "Fight slime 🟢",
+            "Fight fanged beast 🐺",
+            "Go to town square 🏛️"
         ],
         "button functions": [
             fightSlime,
@@ -87,9 +87,9 @@ const locations = [
     {
         name: "fight",
         "button text": [
-            "Attack",
-            "Dodge",
-            "Run"
+            "Attack 💥",
+            "Dodge 💨",
+            "Run away 🏃‍♀️"
         ],
         "button functions": [
             attack,
@@ -101,9 +101,9 @@ const locations = [
     {
         name: "kill monster",
         "button text": [
-            "Go to town square",
-            "Go to town square",
-            "Go to town square"
+            "Go to town square 🏛️",
+            "Go to town square 🏛️",
+            "Go to town square 🏛️"
         ],
         "button functions": [
             goTown,
@@ -115,9 +115,9 @@ const locations = [
     {
         name: "lose",
         "button text": [
-            "REPLAY?",
-            "REPLAY?",
-            "REPLAY?"
+            "REPLAY? 🔁",
+            "REPLAY? 🔁",
+            "REPLAY? 🔁"
         ],
         "button functions": [
             restart ,
@@ -129,9 +129,9 @@ const locations = [
     {
         name: "win",
         "button text": [
-            "REPLAY?",
-            "REPLAY?",
-            "REPLAY?"
+            "REPLAY? 🔁",
+            "REPLAY? 🔁",
+            "REPLAY? 🔁"
         ],
         "button functions": [
             restart ,
@@ -143,9 +143,9 @@ const locations = [
     {
         name: "easter egg",
         "button text": [
-            "2",
-            "8",
-            "Go to town square?"
+            "2 2️⃣",
+            "8 8️⃣",
+            "Go to town square 🏛️?"
         ],
         "button functions": [
             pickTwo ,
@@ -158,17 +158,17 @@ const locations = [
 
 const monsters = [
     {
-        name: "slime",
+        name: "slime 🟢",
         level: 2,
         health: 15
     },
     {
-        name: "fanged beast",
+        name: "fanged beast 🐺",
         level: 8,
         health: 60
     },
     {
-        name: "dragon",
+        name: "dragon 🐉",
         level: 20,
         health: 300
     },
@@ -257,7 +257,8 @@ function goFight(){
     monsterHealth = monsters[fighting].health;
     monsterStats.style.display = "block";
     monsterName.innerText = monsters[fighting].name;
-    monsterHealthText.innerText = monsterHealth
+    const baseHealth = monsterHealth;
+    monsterHealthText.innerText = monsterHealth + "/" + baseHealth;
 }
 function attack(){
     text.innerText = "The "+monsters[fighting].name+" attacks."
@@ -269,7 +270,8 @@ function attack(){
         text.innerText += " You miss.";
     }
     healthText.innerText = health;
-    monsterHealthText.innerText = monsterHealth;
+    const baseHealth = monsters[fighting].health;
+    monsterHealthText.innerText  = monsterHealth + "/" + baseHealth;
     if(health <=0){
         lose();
     } else if(monsterHealth <= 0){
