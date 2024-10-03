@@ -14,14 +14,14 @@ const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
 
-const text = document.querySelector("#text");
-const xpText = document.querySelector("#xpText");
-const healthText = document.querySelector("#healthText");
-const goldText = document.querySelector("#goldText");
-const monsterStats = document.querySelector("#monsterStats");
-const monsterName = document.querySelector("#monsterName");
+const text =                document.querySelector("#text");
+const xpText =              document.querySelector("#xpText");
+const healthText =          document.querySelector("#healthText");
+const goldText =            document.querySelector("#goldText");
+const monsterStats =        document.querySelector("#monsterStats");
+const monsterName =         document.querySelector("#monsterName");
 
-const monsterHealthText = document.querySelector("#monsterHealth");
+const monsterHealthText =   document.querySelector("#monsterHealth");
 
 const weapons = [
     {
@@ -41,7 +41,16 @@ const weapons = [
         power: 100
     }
 ];
-
+/*
+town square
+store
+cave
+fight
+kill monster
+lose
+win
+easter egg
+*/
 const locations = [
     {
         name: "town square",
@@ -190,6 +199,11 @@ function update(location){
     button3.onclick = location["button functions"][2];
 
     text.innerHTML = location.text;
+    // Change background music
+
+    const backgroundMusic = document.getElementById("backgroundMusic");
+    backgroundMusic.src = `ost/${location.name.replace(/\s+/g, '_')}.mp3`;
+    backgroundMusic.play();
 }
 function goTown(){
     update(locations[0]);
@@ -202,7 +216,7 @@ function goCave(){
 }
 function buyHealth(){
     if(gold >= 10){
-        gold-= 10;
+        gold -= 10;
         health += 10;
         goldText.innerText = gold;
         healthText.innerText = health;
@@ -214,7 +228,7 @@ function buyHealth(){
 function buyWeapon(){
     if(currentWeaponIndex < weapons.length-1){
         if(gold >=30){
-            gold-= 30;
+            gold -= 30;
             currentWeaponIndex ++;
             goldText.innerText = gold;
             let newWeapon = weapons[currentWeaponIndex].name;
@@ -300,8 +314,8 @@ function dodge(){
     text.innerText = "You dodge the attack from the "+monsters[fighting].name+".";
 }
 function defeatMonster(){
-    gold +=Math.floor(monsters[fighting].level*6.7);
-    xp+=monsters[fighting].level;
+    gold += Math.floor(monsters[fighting].level*6.7);
+    xp += monsters[fighting].level;
     goldText.innerText = gold;
     xpText.innerText = xp;
     update(locations[4]);
