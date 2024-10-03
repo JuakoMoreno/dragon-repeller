@@ -9,14 +9,17 @@
 </head>
 <body>
     <audio id="backgroundMusic" autoplay loop>
-        <source src="" type="audio/mp3">
-        Your browser does not support the audio element.
+        <source src="ost/town_square.mp3" type="audio/mp3">
     </audio>
     <div id="game">
+        <div id="mute">
+            <button id="muteButton">Mute 🔇</button>
+        </div>
         <div id="stats">
             <span class="stat">XP: <strong><span id="xpText">0</span></strong> ✨</span>
             <span class="stat">Health: <strong><span id="healthText">100</span></strong> ❤️</span>
             <span class="stat">Gold: <strong><span id="goldText">50</span></strong> 💰</span>
+            
         </div>
         <div id="controls">
             <button id="button1">Go to store 🏬</button>

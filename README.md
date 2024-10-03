@@ -6,8 +6,8 @@ This project taught me the basics of HTML, CSS and JS to build an RPG game.
 
 ## TODO:
 - Switch language to Spanish
-- Add music to each location.
-- Add music to each monster fight.
+- ~Add music to each location.~
+- ~Add music to each monster fight.~
 - Add flavor text.
 - ~Add icons.~
 - Add option to swap languages

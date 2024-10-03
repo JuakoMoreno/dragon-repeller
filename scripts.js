@@ -42,14 +42,14 @@ const weapons = [
     }
 ];
 /*
-town square
-store
-cave
-fight
-kill monster
-lose
-win
-easter egg
+town square * 
+store *
+cave *
+fight *
+kill monster *
+lose *
+win *
+easter egg *
 */
 const locations = [
     {
@@ -188,6 +188,25 @@ button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
 
+// Select the background music and mute button;
+const backgroundMusic = document.getElementById("backgroundMusic");
+backgroundMusic.play();
+const muteButton = document.getElementById("muteButton");
+
+// Initialize the mute state (audio is not muted by default)
+let isMuted = false;
+
+// Add click event listener for the mute/unmute button
+muteButton.addEventListener("click", () => {
+    isMuted = !isMuted; // Toggle the mute state
+    backgroundMusic.muted = isMuted; // Mute or unmute the audio
+
+    // Update the button text based on the mute state
+    muteButton.innerText = isMuted ? "Unmute 🔊" : "Mute 🔇";
+});
+
+
+
 function update(location){
     monsterStats.style.display = "none";
     button1.innerText = location["button text"][0];
@@ -201,7 +220,7 @@ function update(location){
     text.innerHTML = location.text;
     // Change background music
 
-    const backgroundMusic = document.getElementById("backgroundMusic");
+    //const backgroundMusic = document.getElementById("backgroundMusic");
     backgroundMusic.src = `ost/${location.name.replace(/\s+/g, '_')}.mp3`;
     backgroundMusic.play();
 }
